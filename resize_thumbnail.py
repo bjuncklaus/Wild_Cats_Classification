@@ -2,7 +2,8 @@ from PIL import Image
 from resizeimage import resizeimage
 import os
 
-dir = 'images/'
+dir = 'images/oncas/'
+dir_output = 'images/oncas_cropped/'
 files = [f for f in os.listdir(dir)] # check extension if necessary
 
 for f in files:
@@ -10,5 +11,6 @@ for f in files:
 	fd_img = open(dir + f, 'r+b')
 	img = Image.open(fd_img)
 	img = resizeimage.resize_thumbnail(img, [100, 100])
-	img.save(dir + f + '-thumbnail', img.format)
+	# img = resizeimage.resize_crop(img, [32, 32])
+	img.save(dir_output + f, img.format)
 	fd_img.close()
