@@ -13,8 +13,13 @@ def deepnn(x):
     digits 0-9). keep_prob is a scalar placeholder for the probability of
     dropout.
   """
-  
+
   # Reshape to use within a convolutional neural net.
   # Last dimension is for "features" - there is only one here, since images are
   # grayscale -- it would be 3 for an RGB image, 4 for RGBA, etc.
   x_image = tf.reshape(x, [-1, 28, 28, 1])
+  
+  # First convolutional layer - maps one grayscale image to 32 feature maps.
+  W_conv1 = weight_variable([5, 5, 1, 32])
+  b_conv1 = bias_variable([32])
+  h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)
