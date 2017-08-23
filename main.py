@@ -34,3 +34,8 @@ def deepnn(x):
 
   # Second pooling layer.
   h_pool2 = max_pool_2x2(h_conv2)
+
+  # Fully connected layer 1 -- after 2 round of downsampling, our 28x28 image
+  # is down to 7x7x64 feature maps -- maps this to 1024 features.
+  W_fc1 = weight_variable([7 * 7 * 64, 1024])
+  b_fc1 = bias_variable([1024])
