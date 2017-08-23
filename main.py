@@ -42,3 +42,8 @@ def deepnn(x):
 
   h_pool2_flat = tf.reshape(h_pool2, [-1, 7*7*64])
   h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)
+
+  # Dropout - controls the complexity of the model, prevents co-adaptation of
+  # features.
+  keep_prob = tf.placeholder(tf.float32)
+  h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
