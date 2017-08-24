@@ -47,3 +47,10 @@ def deepnn(x):
   # features.
   keep_prob = tf.placeholder(tf.float32)
   h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
+
+  # Map the 1024 features to 2 classes, one for each cat
+  W_fc2 = weight_variable([1024, 2])
+  b_fc2 = bias_variable([2])
+
+  y_conv = tf.matmul(h_fc1_drop, W_fc2) + b_fc2
+  return y_conv, keep_prob
