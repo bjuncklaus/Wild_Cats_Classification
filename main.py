@@ -62,3 +62,8 @@ def conv2d(x, W):
 def max_pool_2x2(x):
   """max_pool_2x2 downsamples a feature map by 2X."""
   return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
+
+def weight_variable(shape):
+  """weight_variable generates a weight variable of a given shape."""
+  initial = tf.truncated_normal(shape, stddev=0.1)
+  return tf.Variable(initial)
