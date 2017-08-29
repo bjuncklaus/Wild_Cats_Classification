@@ -72,3 +72,8 @@ def bias_variable(shape):
   """bias_variable generates a bias variable of a given shape."""
   initial = tf.constant(0.1, shape=shape)
   return tf.Variable(initial)
+
+
+def main(_):
+  # Import data
+  mnist = input_data.read_data_sets(FLAGS.data_dir, one_hot=True) # READ the images here <<<<<<<
