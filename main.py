@@ -77,3 +77,9 @@ def bias_variable(shape):
 def main(_):
   # Import data
   mnist = input_data.read_data_sets(FLAGS.data_dir, one_hot=True) # READ the images here <<<<<<<
+
+  # Create the model
+  x = tf.placeholder(tf.float32, [None, 784])
+
+  # Define loss and optimizer
+  y_ = tf.placeholder(tf.float32, [None, 2])
