@@ -15,16 +15,15 @@ def deepnn(x):
   """
 
   # This is a mere copy of the original code here: http://bit.ly/2gBAgbp
-  
+
   # Reshape to use within a convolutional neural net.
   # Last dimension is for "features" - there is only one here, since images are
   # grayscale -- it would be 3 for an RGB image, 4 for RGBA, etc.
   x_image = tf.reshape(x, [-1, 28, 28, 1])
 
   # First convolutional layer - maps one grayscale image to 32 feature maps.
-  W_conv1 = weight_variable([5, 5, 1, 32])
-  b_conv1 = bias_variable([32])
-  h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)
+W_conv1 = weight_variable([5, 5, 1, 32])   b_conv1 = bias_variable([32])
+h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)
 
   # Pooling layer - downsamples by 2X.
   h_pool1 = max_pool_2x2(h_conv1)
@@ -75,9 +74,12 @@ def bias_variable(shape):
   initial = tf.constant(0.1, shape=shape)
   return tf.Variable(initial)
 
-
 def main(_):
   # Import data
+  filenames = ['1.jpg', '2.jpg', '3.jpg', '4.jpg'] # Sample images
+  filename_queue = tf.train.string_input_producer(filenames)
+  
+
   mnist = input_data.read_data_sets(FLAGS.data_dir, one_hot=True) # READ the images here <<<<<<<
 
   # Create the model
