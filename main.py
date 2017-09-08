@@ -78,7 +78,11 @@ def main(_):
   # Import data
   filenames = ['1.jpg', '2.jpg', '3.jpg', '4.jpg'] # Sample images
   filename_queue = tf.train.string_input_producer(filenames)
-  
+  reader = tf.WholeFileReader()
+  # Read the image
+  filename, content = reader.read(filename_queue)
+  # Decode it
+  image = tf.image.decode_jpeg(content, channels=3)
 
   mnist = input_data.read_data_sets(FLAGS.data_dir, one_hot=True) # READ the images here <<<<<<<
 
