@@ -84,6 +84,14 @@ def main(_):
   # Decode it
   image = tf.image.decode_jpeg(content, channels=3)
 
+  image = tf.cast(image, tf.float32)
+  resized_image = tf.image.resize_images(image, [224, 224])
+
+  # Batching
+  image_batch = tf.train.batch([resized_image], batch_size=8)
+
+
+
   mnist = input_data.read_data_sets(FLAGS.data_dir, one_hot=True) # READ the images here <<<<<<<
 
   # Create the model
