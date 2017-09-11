@@ -92,7 +92,7 @@ def main(_):
 
 
 
-  mnist = input_data.read_data_sets(FLAGS.data_dir, one_hot=True) # READ the images here <<<<<<<
+  # mnist = input_data.read_data_sets(FLAGS.data_dir, one_hot=True) # READ the images here <<<<<<<
 
   # Create the model
   x = tf.placeholder(tf.float32, [None, 784])
@@ -111,7 +111,8 @@ def main(_):
   with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     for i in range(20000):
-      batch = mnist.train.next_batch(50)
+      # batch = mnist.train.next_batch(50)
+      batch = image_batch.train.next_batch(50)
       if i % 100 == 0:
         train_accuracy = accuracy.eval(feed_dict={
             x: batch[0], y_: batch[1], keep_prob: 1.0})
